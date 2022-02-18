@@ -27,6 +27,18 @@ app.get("/api/hello", function (req, res) {
 
 
 
+// [ME] //Setting route for the /api/whoami endopint
+app.get("/api/whoami", (req, res)=>{
+  let myJson = {};
+  myJson.ipaddress = req.ip;// for Express 
+  //or --->> myJson.ipaddress = req.socket.remoteAddress <<---- for NodeJs;
+  myJson.language = req.headers["accept-language"];
+  myJson.software = req.headers["user-agent"];
+  res.json(myJson);
+});
+
+
+
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
